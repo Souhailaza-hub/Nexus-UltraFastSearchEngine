@@ -1,0 +1,17 @@
+find_package(GTest CONFIG QUIET)
+if(NOT GTest_FOUND AND NEXUS_FETCH_GTEST)
+  include(FetchContent)
+  FetchContent_Declare(googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.15.2.zip
+  )
+  set(gtest_force_shared_crt ON CACHE BOOL "Use the shared MSVC runtime" FORCE)
+  FetchContent_MakeAvailable(googletest)
+endif()
+if(GTest_FOUND OR TARGET GTest::gtest_main)
+  add_executable(nexus_core_tests engine_test.cpp)
+  target_link_libraries(nexus_core_tests PRIVATE nexus_core GTest::gtest_main)
+  include(GoogleTest)
+  gtest_discover_tests(nexus_core_tests)
+else()
+  message(WARNING "GoogleTest was not found; C++ tests are not configured. Install GoogleTest and reconfigure to run them.")
+endif()

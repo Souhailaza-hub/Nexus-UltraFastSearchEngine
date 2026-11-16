@@ -1,0 +1,17 @@
+/build/
+/dist/
+/NEXUS Search.exe
+/out/
+/.idea/
+/.vs/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyd
+*.dll
+*.spec
+CMakeUserPresets.json
+.DS_Store
+/data/snapshots/*
+!/data/snapshots/.gitkeep

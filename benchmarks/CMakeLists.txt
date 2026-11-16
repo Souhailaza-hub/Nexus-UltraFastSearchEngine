@@ -1,0 +1,6 @@
+add_executable(nexus_benchmark benchmark.cpp)
+target_link_libraries(nexus_benchmark PRIVATE nexus_core Psapi)
+target_compile_definitions(nexus_benchmark PRIVATE UNICODE _UNICODE NOMINMAX WIN32_LEAN_AND_MEAN)
+if(MSVC)
+  target_compile_options(nexus_benchmark PRIVATE /W4 /permissive- /utf-8)
+endif()
